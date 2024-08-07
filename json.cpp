@@ -10,7 +10,6 @@ void escape(char16_t x, char16_t* res) {
 		res[3] = TO_HEX(((x & 0x0F00) >> 8));
 		res[4] = TO_HEX(((x & 0x00F0) >> 4));
 		res[5] = TO_HEX((x & 0x000F));
-		//res[6] = '\0';
 	}
 
 }
