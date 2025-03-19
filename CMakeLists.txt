@@ -74,8 +74,14 @@ set(HEADERS
     json.h
 )
 
+if(WIN32)
+    SET(AddInDef_SRC AddInNative.def)
+    SET(CMAKE_LINK_DEF_FILE_FLAG AddInNative.def)
+    add_definitions(-DUNICODE -DWIN32)
+endif()
+
 # ==== Создание библиотеки ====
-add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS} ${AddInDef_SRC})
 
 # ==== Линковка PCRE2 (статически) ====
 target_link_libraries(${PROJECT_NAME} pcre2-16-static)
@@ -90,13 +96,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
-
-if(WIN32)
-    message("Add def file")
-    set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "/DEF:AddInNative.def")
-    SET(CMAKE_LINK_DEF_FILE_FLAG AddInNative.def)
-endif()
-
 
 message(STATUS "Output file: ${OUTPUT_NAME}")
 
