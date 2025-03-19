@@ -3,6 +3,7 @@ project(AddInNative LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
@@ -89,6 +90,13 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
+
+if(WIN32)
+    message("Add def file")
+    set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "/DEF:AddInNative.def")
+    SET(CMAKE_LINK_DEF_FILE_FLAG AddInNative.def)
+endif()
+
 
 message(STATUS "Output file: ${OUTPUT_NAME}")
 
