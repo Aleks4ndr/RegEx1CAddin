@@ -6,6 +6,8 @@
 #include <wchar.h>
 #include "AddInNative.h"
 
+#include <algorithm>
+
 static const std::u16string sClassName(u"RegEx");
 static const std::u16string sVersion(u"15.12");
 
@@ -22,7 +24,7 @@ long GetClassObject(const WCHAR_T* wsName, IComponentBase** pInterface)
 	if (!*pInterface)
 	{
 		*pInterface = new CAddInNative;
-		return (long)*pInterface;
+		return static_cast<long long>(reinterpret_cast<intptr_t>(*pInterface));
 	}
 	return 0;
 }

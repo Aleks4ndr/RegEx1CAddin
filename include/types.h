@@ -2,11 +2,11 @@
 #ifndef __CON_TYPES_H__
 #define __CON_TYPES_H__
 
-#if defined(_WINDOWS) || defined(WINAPI_FAMILY)
+#if defined(_WINDOWS) || defined(WINAPI_FAMILY) || defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
 #endif
 
-#if defined(WINAPI_FAMILY)
+#if defined(WINAPI_FAMILY) || defined(_WIN32) || defined(_WIN64)
 #include <wtypes.h>
 #endif
 
