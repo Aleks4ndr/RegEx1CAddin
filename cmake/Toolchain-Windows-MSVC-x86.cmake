@@ -3,8 +3,7 @@ set(CMAKE_SYSTEM_NAME Windows)
 set(CMAKE_C_COMPILER cl)
 set(CMAKE_CXX_COMPILER cl)
 
-set(ARCH  "x86")
+set(ARCH x86)
 set(CMAKE_GENERATOR_PLATFORM Win32)
 
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-add_definitions(_D_WINDOWS)

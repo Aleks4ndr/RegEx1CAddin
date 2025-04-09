@@ -1,0 +1,9 @@
+{
+    global:
+        DestroyObject;
+        GetClassNames;
+        GetClassObject;
+        SetPlatformCapabilities;
+    local:
+        *;
+};

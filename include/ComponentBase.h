@@ -7,6 +7,12 @@
 #ifndef __COMPONENT_BASE_H__
 #define __COMPONENT_BASE_H__
 
+#ifdef _WIN32
+    #define EXPORT __declspec(dllexport)
+#else
+    #define EXPORT __attribute__((visibility("default")))
+#endif
+
 #include "types.h"
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -230,10 +236,10 @@ enum AppCapabilities
 /**
  * These functions should be implemented that component can be loaded and created. 
  */
-extern "C" long GetClassObject(const WCHAR_T*, IComponentBase** pIntf);
-extern "C" long DestroyObject(IComponentBase** pIntf);
-extern "C" const WCHAR_T* GetClassNames();
-extern "C" AppCapabilities SetPlatformCapabilities(const AppCapabilities capabilities);
+extern "C" EXPORT long GetClassObject(const WCHAR_T*, IComponentBase** pIntf);
+extern "C" EXPORT long DestroyObject(IComponentBase** pIntf);
+extern "C" EXPORT const WCHAR_T* GetClassNames();
+extern "C" EXPORT AppCapabilities SetPlatformCapabilities(const AppCapabilities capabilities);
 
 typedef long (*GetClassObjectPtr)(const WCHAR_T* wsName, IComponentBase** pIntf);
 typedef long (*DestroyObjectPtr)(IComponentBase** pIntf);

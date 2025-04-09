@@ -9,5 +9,5 @@ set(CMAKE_C_FLAGS "-static -static-libgcc -static-libstdc++")
 set(CMAKE_CXX_FLAGS "-static -static-libgcc -static-libstdc++")
 set(CMAKE_EXE_LINKER_FLAGS "-static")
 
-# Оптимизация
+# Optimization
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1 -fPIC")
