@@ -21,14 +21,12 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 include_directories(SYSTEM /usr/x86_64-w64-mingw32/include)
 set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 
-set(CMAKE_C_FLAGS "-static -static-libgcc -static-libstdc++")
-set(CMAKE_CXX_FLAGS "-static -static-libgcc -static-libstdc++")
-set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -static -s -Wl,--strip-all")
+set(CMAKE_C_FLAGS "-static-libgcc")
+set(CMAKE_CXX_FLAGS "-static-libgcc -static-libstdc++")
 
 # Optimization
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fPIC -march=x86-64-v4 -flto -fdata-sections -ffunction-sections -fvisibility=hidden -fno-rtti -fno-exceptions -fomit-frame-pointer -DNDEBUG")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -fPIC -march=x86-64-v4 -flto -fdata-sections -ffunction-sections -fvisibility=hidden -fno-rtti -fno-exceptions -fomit-frame-pointer -DNDEBUG")
-
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -s -fdata-sections -ffunction-sections")
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3 -s -fdata-sections -ffunction-sections")
-set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -static -Wl,--gc-sections,--strip-all,--exclude-libs,-s")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fPIC -flto -fdata-sections -ffunction-sections -fvisibility=hidden -fomit-frame-pointer -DNDEBUG")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -fPIC -flto -fdata-sections -ffunction-sections -fvisibility=hidden -fomit-frame-pointer -DNDEBUG")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti -fno-exceptions")
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-Bstatic -lgcc -lstdc++ -Wl,-Bdynamic -s")
+# set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--gc-sections,-s")
