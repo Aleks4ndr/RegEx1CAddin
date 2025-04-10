@@ -1,8 +1,26 @@
-[![Join the chat at https://gitter.im/RegEx1CAddin/Lobby](https://badges.gitter.im/RegEx1CAddin.svg)](https://gitter.im/RegEx1CAddin/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 # RegEx1CAddin
 
-Внешняя Native API компонента для выполнения регулярных выражений на платформе 1С:Предприятие 8. Написана на C++. Используется движок PCRE2 версии 10.36 (до версии 13, использовался boost::regex v 1.69). Версия синтаксиса Perl Compatible Regular Expressions.
+This is NativeAPI component based on https://github.com/alexkmbk/RegEx1CAddin
+
+## Build for Windows
+
+requirements:
+- Visual Studio Community 2022
+- Cmake 3.15 or above
+- Git
+
+to build this project run:
+- cmake -S . -B msvc-build -DCMAKE_TOOLCHAIN_FILE=.\cmake\Toolchain-Windows-MSVC-x86_64.cmake
+- cmake --build .\msvc-build\ --config Release
+
+## Build for Linux
+
+requirements:
+- Docker
+
+to build this project run:
+- docker build -t regex-addin-builder .
+- 
 
 Текущая версия собрана для следующих платформ:
 - Windows 32bit    

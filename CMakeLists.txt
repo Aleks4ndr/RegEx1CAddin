@@ -101,18 +101,3 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 )
 
 message(STATUS "Output file: ${OUTPUT_NAME}")
-
-set(TEST_PROJECT_NAME "Test_loading")
-set(TEST_SRC 
-    test_loading_win.cpp)
-add_executable(${TEST_PROJECT_NAME} ${TEST_SRC})
-
-set_target_properties(${TEST_PROJECT_NAME} PROPERTIES
-    CLEAN_DIRECT_OUTPUT 1
-    OUTPUT_NAME ${OUTPUT_NAME}
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/package
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/package
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/package
-)
-
-
