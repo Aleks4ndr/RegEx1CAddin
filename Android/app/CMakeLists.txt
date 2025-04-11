@@ -44,7 +44,23 @@ find_library( # Sets the name of the path variable.
 #${CMAKE_CURRENT_SOURCE_DIR} - the path to the CMakeLists.txt file
 
 target_link_libraries(AddInNative -L${CMAKE_CURRENT_SOURCE_DIR}/libs/android/)
-target_link_libraries(AddInNative -lpcre2-16)
+include(FetchContent)
+FetchContent_Declare(
+    pcre2
+    GIT_REPOSITORY https://github.com/PCRE2Project/pcre2.git
+    GIT_TAG 2dce776
+)
+
+set(PCRE2_BUILD_PCRE2_8 OFF CACHE BOOL "" FORCE)
+set(PCRE2_BUILD_PCRE2_16 ON CACHE BOOL "" FORCE)
+set(PCRE2_BUILD_PCRE2_32 OFF CACHE BOOL "" FORCE)
+set(PCRE2_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(PCRE2_BUILD_SHARED OFF CACHE BOOL "" FORCE) 
+set(PCRE2_BUILD_STATIC ON CACHE BOOL "" FORCE)
+
+FetchContent_MakeAvailable(pcre2)
+target_link_libraries(AddInNative pcre2-16-static)
+# target_link_libraries(AddInNative -lpcre2-16)
 #target_link_libraries(AddInNative -lpcre2-16_x86_64)
 
 # Specifies libraries CMake should link to your target library. You
